@@ -12,7 +12,7 @@ import org.springframework.web.server.ServerWebInputException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:80")
 @RestController
 public class CubeControllerJSON {
     private Service<Cubes> cubesService;
