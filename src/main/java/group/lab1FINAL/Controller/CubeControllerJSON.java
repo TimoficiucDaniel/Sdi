@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ServerWebInputException;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
-@CrossOrigin(origins = "http://localhost:80")
+@CrossOrigin
 @RestController
 public class CubeControllerJSON {
     private Service<Cubes> cubesService;
@@ -55,15 +56,33 @@ public class CubeControllerJSON {
         }
     }
 
+    @PostMapping("/cubes/{id}/review")
+    public Object newCube(@PathVariable Long id, @RequestBody List<Review> lista){
+       Cubes cube = cubesService.getById(id);
+       for( Review r : lista)
+       {
+           r.setCube(cube);
+           reviewService.save(r);
+       }
+       return lista;
+    }
+
+    //create different validator for updateCube
     @PutMapping("/cubes/{id}")
     public Object updateCube(@RequestBody Cubes cube, @PathVariable Long id){
         Cubes cubeNew  = cubesService.getById(id);
-        cubeNew.setMagnetic(cube.getMagnetic());
-        cubeNew.setType(cube.getType());
-        cubeNew.setDescription(cube.getDescription());
-        cubeNew.setReviews(cube.getReviews());
-        cubeNew.setName(cube.getName());
-        cubeNew.setPrice(cube.getPrice());
+        if(cube.getMagnetic()!=null)
+         cubeNew.setMagnetic(cube.getMagnetic());
+        if(cube.getType()!=null && !Objects.equals(cube.getType(), ""))
+            cubeNew.setType(cube.getType());
+        if(cube.getDescription()!=null  && !Objects.equals(cube.getDescription(), ""))
+            cubeNew.setDescription(cube.getDescription());
+        if(cube.getReviews()!=null )
+            cubeNew.setReviews(cube.getReviews());
+        if(cube.getName()!=null && !Objects.equals(cube.getName(), ""))
+            cubeNew.setName(cube.getName());
+        if(cube.getPrice()!=null && cube.getPrice()!=0)
+            cubeNew.setPrice(cube.getPrice());
         Errors errors = new BeanPropertyBindingResult(cubeNew,"cube");
         try {
             cubesValidator.validate(cubeNew, errors);

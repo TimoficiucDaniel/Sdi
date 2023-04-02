@@ -1,6 +1,5 @@
 package group.lab1FINAL.Model;
 
-import jakarta.persistence.Column;
 
 public class CubesDTO implements Comparable<CubesDTO>{
 
@@ -10,6 +9,14 @@ public class CubesDTO implements Comparable<CubesDTO>{
     private Integer price;
 
     private String name;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     private String description;
 

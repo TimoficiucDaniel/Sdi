@@ -19,7 +19,8 @@ public class CubesValidator implements Validator {
     public void validate(Object target, Errors errors) {
         ValidationUtils.rejectIfEmpty(errors,"name","name.empty");
         Cubes c = (Cubes) target;
-        if(c.getPrice() < 0){
+        if(c.getPrice()!=null)
+            if(c.getPrice() < 0 ){
             errors.rejectValue("price","negativeValue");
         } else if(c.getName().length()>50){
             errors.rejectValue("name","longerThan50chars");

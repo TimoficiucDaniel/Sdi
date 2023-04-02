@@ -5,18 +5,19 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
-import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Type;
 import org.springframework.lang.NonNull;
 
+import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "cubes")
 public class Cubes {
-    private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name="id") Long id;
+    private @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name="id") Long id;
 
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
