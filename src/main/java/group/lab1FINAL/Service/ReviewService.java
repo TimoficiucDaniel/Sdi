@@ -1,10 +1,13 @@
 package group.lab1FINAL.Service;
 
+import group.lab1FINAL.Model.CubeDtoForFront;
 import group.lab1FINAL.Model.Cubes;
 import group.lab1FINAL.Model.Review;
 import group.lab1FINAL.Repo.ReviewRepo;
+import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @org.springframework.stereotype.Service
 public class ReviewService implements Service<Review>{
@@ -18,7 +21,7 @@ public class ReviewService implements Service<Review>{
 
     @Override
     public List<Review> getAll() {
-        return repo.findAll();
+        return repo.findAll(PageRequest.of(0,20)).getContent();
     }
 
     @Override
@@ -39,6 +42,10 @@ public class ReviewService implements Service<Review>{
     @Override
     public void delete(Long id) {
         repo.deleteById(id);
+    }
+
+    public List<Review> getReviews(int page){
+        return repo.findAll(PageRequest.of(page,100)).stream().toList();
     }
 
 }

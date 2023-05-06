@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonIncludeProperties;
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name="CubesProducer")
@@ -14,12 +14,12 @@ public class CubesProducer {
     private Long id;
 
     @ManyToOne
-    @JsonIncludeProperties("id")
+    @JsonIncludeProperties({"name","id","type"})
     @JoinColumn(name="cubes_id")
     private Cubes cube;
 
     @ManyToOne
-    @JsonIncludeProperties("id")
+    @JsonIncludeProperties({"name","id"})
     @JoinColumn(name="producer_id")
     private Producer producer;
 

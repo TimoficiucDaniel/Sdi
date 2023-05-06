@@ -2,6 +2,8 @@ package group.lab1FINAL.Service;
 
 import group.lab1FINAL.Model.CubesProducer;
 import group.lab1FINAL.Repo.CubesProducerRepo;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
 
@@ -16,9 +18,12 @@ public class CubesProducerService implements Service<CubesProducer>{
 
     @Override
     public List<CubesProducer> getAll() {
-        return repo.findAll();
+        return repo.findAll(PageRequest.of(0,20)).getContent();
     }
 
+    public List<CubesProducer> getAll(int page){
+        return repo.findAll(PageRequest.of(page,100)).getContent();
+    }
     @Override
     public CubesProducer save(CubesProducer obj) {
         return repo.save(obj);

@@ -63,7 +63,7 @@ class CubeServiceImplTest {
         lista.add(cub1);
         lista.add(cub2);
 
-        Assertions.assertEquals(Arrays.toString(new List[]{cubeService.getCubesAlphabetically()}),Arrays.toString(new List[]{lista}));
+        Assertions.assertEquals(Arrays.toString(new List[]{cubeService.getCubesAlphabetically(200)}),Arrays.toString(new List[]{lista}));
     }
 
     @Test
@@ -80,6 +80,6 @@ class CubeServiceImplTest {
         lista.add(cub1);
         lista.add(cub2);
 
-        Assertions.assertEquals(Arrays.toString(new List[]{cubeService.getCubesAlphabetically()}),Arrays.toString(new List[]{lista}));
+        Assertions.assertEquals(Arrays.toString(new List[]{cubeService.getCubesAlphabetically(200)}),Arrays.toString(new List[]{lista}));
     }
 }

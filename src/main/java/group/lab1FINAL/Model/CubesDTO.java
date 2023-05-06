@@ -1,6 +1,7 @@
 package group.lab1FINAL.Model;
 
-import jakarta.persistence.Column;
+
+import java.util.List;
 
 public class CubesDTO implements Comparable<CubesDTO>{
 
@@ -10,6 +11,15 @@ public class CubesDTO implements Comparable<CubesDTO>{
     private Integer price;
 
     private String name;
+
+    private Integer reviews;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     private String description;
 
@@ -24,7 +34,21 @@ public class CubesDTO implements Comparable<CubesDTO>{
         this.magnetic = magnetic;
     }
 
+    public CubesDTO(Long id, String name,Integer ratings) {
+        this.id=id;
+        this.name = name;
+        this.reviews = ratings;
+    }
+
     public CubesDTO() {
+    }
+
+    public Integer getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Integer reviews) {
+        this.reviews = reviews;
     }
 
     public void setType(String type) {
